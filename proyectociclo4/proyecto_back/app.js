@@ -3,13 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var database = require("./config/database");
-var auth = require('./auth/main.auth')
+var database = require('./config/database');
+var usuariosRouter = require('./routes/usuarios.router');
+var auth = require('./auth/main_auth');
+
 
 var empleadosRouter = require('./routes/empleados.router');
 var noviosRouter = require('./routes/novios.router');
 var juegosRouter = require('./routes/juegos.router');
-var usuariosRouter = require('./routes/usuarios.router');
+
 
 var app = express();
 
@@ -23,13 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 database.mongoConnect();
 app.use('/usuarios', usuariosRouter);
 app.use(auth);
-//router
 
+//router
 app.use('/empleados',empleadosRouter);
 app.use('/novios',noviosRouter);
 app.use('/juegos',juegosRouter);
-
-
 
 
 // catch 404 and forward to error handler
