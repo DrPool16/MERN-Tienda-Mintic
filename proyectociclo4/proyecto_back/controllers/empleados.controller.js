@@ -63,11 +63,12 @@ exports.update = function(req,res){
             response.exito = false,
             response.msg = "Error al modificar el empleado"
             res.jason(response)
+            return;
         }
 
         response.exito = true,
         response.msg = "El empleado se modifico correctamente"
-        response.json(response)
+        res.json(response)
 
     })
 
@@ -84,6 +85,6 @@ exports.remove = function(req, res){
         }
         response.exito = true,
         response.msg = "El empleado eliminado correctamente"
-        response.json(response)
+        res.json(response)
     })
 }

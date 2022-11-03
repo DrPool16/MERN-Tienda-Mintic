@@ -65,11 +65,12 @@ exports.update = function(req,res){
             response.exito = false,
             response.msg = "Error al modificar el juego"
             res.jason(response)
+            return;
         }
 
         response.exito = true,
         response.msg = "El juego se modifico correctamente"
-        response.json(response)
+        res.json(response)
 
     })
 
@@ -86,6 +87,6 @@ exports.remove = function(req, res){
         }
         response.exito = true,
         response.msg = "El juego eliminado correctamente"
-        response.json(response)
+        res.json(response)
     })
 }
