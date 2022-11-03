@@ -5,9 +5,9 @@ const { request } = require("http");
 
 exports.login = function(req, res, next){
 
-    let hashedpass = crypto.createHashed("sha512").update(req.body.pass).digest("hex");
+    let hashedpass = crypto.createHash("sha512").update(req.body.pass).digest("hex");
 
-    Usuario.findOne({usuario: req.body.usuario, pass: hashedpass}, function(err,usuario){
+    Usuario.findOne({ usuario: req.body.usuario, pass: hashedpass}, function(err,usuario){
         let response = {
             token: null
         }
@@ -17,6 +17,6 @@ exports.login = function(req, res, next){
                 usuario: usuario.usuario
             }, "__recret__")
         }
-        request.json(response);
+        res.json(response);
     })
 }
